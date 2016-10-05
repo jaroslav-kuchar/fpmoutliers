@@ -1,0 +1,21 @@
+Package: fpmoutliers
+Type: Package
+Title: Frequent Pattern Mining Outliers
+Version: 0.0.1
+Authors@R: person("Jaroslav", "Kuchar", email = "jaroslav.kuchar@gmail.com", role = c("aut", "cre"))
+Author: Jaroslav Kuchar [aut, cre]
+Maintainer: Jaroslav Kuchar <jaroslav.kuchar@gmail.com>
+URL: https://github.com/jaroslav-kuchar/fpmoutliers
+BugReports: https://github.com/jaroslav-kuchar/fpmoutliers/issues
+Description: Algorithms for detection of outliers based on frequent pattern
+    mining.
+License: Apache License (== 2.0)
+LazyData: TRUE
+Imports: pmml, XML, Matrix, R.utils,
+        arules,
+        foreach,
+        doParallel,
+        parallel,
+        methods
+RoxygenNote: 5.0.1
+Suggests: testthat

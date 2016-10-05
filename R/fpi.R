@@ -1,0 +1,75 @@
+#' Frequent Pattern Isolation
+#'
+#' @param dataFrame data.frame with input data
+#' @param minSupport minimum support for FPM
+#' @param mlen maximum length of frequent itemsets
+#' @return vector with outlier scores
+#' @import arules foreach doParallel parallel Matrix
+#' @export
+#' @examples
+#' library("fpmoutliers")
+#' dataFrame <- read.csv(
+#'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+#' model <- FPI(dataFrame, minSupport = 0.001)
+FPI <- function(dataFrame, minSupport=0.3, mlen=0){
+
+  dataFrame <- sapply(dataFrame,as.factor)
+  dataFrame <- data.frame(dataFrame, check.names=F)
+  txns <- as(dataFrame, "transactions")
+  # set maximal lentgh to number of columns if undefined
+  if(mlen<=0){
+    mlen <- ncol(dataFrame)
+  }
+  # mine frequent itemsets
+  fitemsets <- apriori(txns, parameter = list(support=minSupport, maxlen=mlen, target="frequent itemsets"))
+
+  # compute lengths of individual frequent itemsets
+  start.time <- Sys.time()
+  fiLengths <- colSums(fitemsets@items@data)
+  end.time <- Sys.time()
+  message(paste("FI lengths:", time.taken <- end.time - start.time))
+
+  # extract support of individual frequent itemsets
+  start.time <- Sys.time()
+  fiQualities <- c(t(fitemsets@quality))
+  end.time <- Sys.time()
+  message(paste("FI qualities:", time.taken <- end.time - start.time))
+
+  # compute which itemset covers which transaction and provide as a matrix itemsets X transactions
+  start.time <- Sys.time()
+  fiCoverages <- Matrix(t(is.subset(fitemsets@items, txns)+0), sparse=TRUE)
+  end.time <- Sys.time()
+  message(paste("FI coverages:", time.taken <- end.time - start.time))
+
+  # compute basic score for each coverage -> itemsets X transactions
+  start.time <- Sys.time()
+  results <-fiCoverages %*% Diagonal(x=1/(fiQualities * fiLengths))
+  end.time <- Sys.time()
+  message(paste("FI multiply:", time.taken <- end.time - start.time))
+
+  # compute how many items of each transaction is not covered by appropriate frequent itemsets
+  start.time <- Sys.time()
+  fiC <- colSums(txns@data) - unname(rowSums(as(fiCoverages,"ngCMatrix") %*% t(fitemsets@items@data)))
+  end.time <- Sys.time()
+  message(paste("Penalization:", time.taken <- end.time - start.time))
+
+  # compute final score as a mean value of scores and penalizations: (sum of scores + penalization*number of transactions)/(number of scores + penalization)
+  # penalization with number of transactions is the worse case, the lowest support only one instance
+  start.time <- Sys.time()
+  scores <- unname(rowSums(results) + fiC*length(txns))/(unname(apply(results,1, function(x) length(x[x!=0]))) + fiC)
+  end.time <- Sys.time()
+  message(paste("Means:", time.taken <- end.time - start.time))
+
+  output <- list()
+  output$minSupport <- minSupport
+  output$maxlen <- mlen
+  output$model <- fitemsets
+  output$scores <- scores
+  output$partials <- list(
+    coverage = fiCoverages,
+    scores = results,
+    penalization = fiC
+  )
+  # scores
+  output
+}
