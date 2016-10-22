@@ -39,7 +39,6 @@ generatePMML <- function(model, dataFrame=NULL, topN=NULL){
   parameterList <- append.XMLNode(parameterList, xmlNode("Parameter", attrs=c("name"="minSupport", "value"=model$minSupport)))
   odModel <- append.XMLNode(odModel, parameterList)
 
-  # associationModel <- xmlElementsByTagName(pmml.itemsets(model$model), "AssociationModel")
   amPmml <- pmml.itemsets(model$model)
   associationModel <- amPmml$children[[3]]
   associationModel <- addAttributes(associationModel, "xmlns"=as.character(amPmml$attributes["xmlns"]))
@@ -78,4 +77,25 @@ generatePMML <- function(model, dataFrame=NULL, topN=NULL){
 
   mainNode <- append.XMLNode(mainNode, odModel)
   mainNode
+}
+
+#' PMML parser
+#'
+#' @param fileName xml file name
+#' @return list model
+#' @import pmml XML
+#' @export
+parsePMML <- function(fileName) {
+  doc <- xmlTreeParse(fileName, useInternalNodes = TRUE)
+  top <- xmlRoot(doc)
+  output <- list()
+
+  if(length(xpathSApply(top, "//od:OutlierDetectionModel"))>0){
+    output$numberOfOutliers <- as.numeric(unname(xpathSApply(top, "//od:OutlierDetectionModel/@numberOfOutliers")))
+    output$algorithmName <- unname(xpathSApply(top, "//od:OutlierDetectionModel/@algorithmName"))
+    output$minSupport <- as.numeric(unname(xpathSApply(top, "//od:OutlierDetectionModel/od:ParameterList/od:Parameter[@name='minSupport']/@value")))
+  } else {
+    stop("Element od:OutlierDetectionModel does not exist!")
+  }
+  output
 }
