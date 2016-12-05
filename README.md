@@ -1,5 +1,7 @@
 # fpmoutliers
 
+[![Build Status](https://travis-ci.org/jaroslav-kuchar/fpmoutliers.svg?branch=master)](https://travis-ci.org/jaroslav-kuchar/fpmoutliers)
+
 R implementation of algorithms for detection of outliers based on frequent pattern mining.
 
 Available implementations:
