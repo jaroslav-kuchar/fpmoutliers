@@ -31,6 +31,8 @@ devtools::install_github("jaroslav-kuchar/fpmoutliers")
 
 ## Usage
 ```R
+library(fpmoutliers)
+library(XML)
 dataFrame <- read.csv(system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
 model <- FPI(dataFrame, minSupport = 0.001)
 saveXML(generatePMML(model, dataFrame), "example_out.xml")
@@ -39,10 +41,10 @@ saveXML(generatePMML(model, dataFrame), "example_out.xml")
 ## Model Output
 
 All implemented methods return a list with following parameters:
-- minSupport - minum support setting for frequent itemsets mining
-- maxlen - max. length of frequent itemsets
-- model - frequemt itemset model represented as [itemsets-class](https://cran.r-project.org/web/packages/arules/arules.pdf)
-- scores - outlier/anomaly scores for each observation/row of the input dataframe
+- `minSupport` - minimum support setting for frequent itemsets mining
+- `maxlen` - maximum length of frequent itemsets
+- `model` - frequent itemset model represented as [itemsets-class](https://cran.r-project.org/web/packages/arules/arules.pdf)
+- `scores` - outlier/anomaly scores for each observation/row of the input dataframe
 
 ## Contributors
 
