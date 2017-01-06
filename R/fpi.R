@@ -1,6 +1,6 @@
 #' Frequent Pattern Isolation
 #'
-#' @param dataFrame data.frame with input data
+#' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
 #' @return vector with outlier scores
@@ -11,14 +11,17 @@
 #' dataFrame <- read.csv(
 #'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
 #' model <- FPI(dataFrame, minSupport = 0.001)
-FPI <- function(dataFrame, minSupport=0.3, mlen=0){
+FPI <- function(data, minSupport=0.3, mlen=0){
 
-  dataFrame <- sapply(dataFrame,as.factor)
-  dataFrame <- data.frame(dataFrame, check.names=F)
-  txns <- as(dataFrame, "transactions")
-  # set maximal lentgh to number of columns if undefined
+  if(is(data,"data.frame")){
+    data <- sapply(data,as.factor)
+    data <- data.frame(data, check.names=F)
+    txns <- as(data, "transactions")
+  } else {
+    txns <- data
+  }
   if(mlen<=0){
-    mlen <- ncol(dataFrame)
+    mlen <- length(unique(txns@itemInfo$variables))
   }
   # mine frequent itemsets
   fitemsets <- apriori(txns, parameter = list(support=minSupport, maxlen=mlen, target="frequent itemsets"))

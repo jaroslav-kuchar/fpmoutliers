@@ -1,9 +1,11 @@
-#' Automatic build of anomaly detection model
+#' @title Automatic build
 #'
-#' @param data data.frame with input data
-#' @param func function name of method
-#' @param initial_support maximum length of frequent itemsets
-#' @param top_outlier_threshold number of top unique outliers
+#' @description An experimental implementataion that automatically builds an anomaly detection model
+#'
+#' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
+#' @param func function name of the method that will be use during the automatic build
+#' @param initial_support initial maximum support
+#' @param top_outlier_threshold number of top unique outliers as a stopping condition
 #' @param iteration_timeout timeout of one iteration
 #' @return model of outlier detection
 #' @importFrom R.utils evalWithTimeout

@@ -1,20 +1,24 @@
 #' Frequent Pattern Isolation
 #'
-#' @param dataFrame data.frame with input data
+#' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
 #' @return vector with outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-FPI_old <- function(dataFrame, minSupport=0.3, mlen=0){
+FPI_old <- function(data, minSupport=0.3, mlen=0){
   no_cores <- detectCores() - 1
   registerDoParallel(no_cores)
 
-  dataFrame <- sapply(dataFrame,as.factor)
-  dataFrame <- data.frame(dataFrame, check.names=F)
-  txns <- as(dataFrame, "transactions")
+  if(is(data,"data.frame")){
+    data <- sapply(data,as.factor)
+    data <- data.frame(data, check.names=F)
+    txns <- as(data, "transactions")
+  } else {
+    txns <- data
+  }
   if(mlen<=0){
-    mlen <- ncol(dataFrame)
+    mlen <- length(unique(txns@itemInfo$variables))
   }
   fitemsets <- apriori(txns, parameter = list(support=minSupport, maxlen=mlen, target="frequent itemsets"))
 
@@ -37,13 +41,13 @@ FPI_old <- function(dataFrame, minSupport=0.3, mlen=0){
     }
     # penalization for incomplete coverage
     if(length(coverage)<length(transaction)){
-      support <- c(support, rep(nrow(dataFrame),(length(transaction) - length(coverage)) ))
+      support <- c(support, rep(length(txns),(length(transaction) - length(coverage)) ))
     }
 
     if(length(support)>0){
       mean(support)
     } else {
-      nrow(dataFrame)
+      length(txns)
     }
   }
   scores <- unlist(scores)

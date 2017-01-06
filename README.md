@@ -30,6 +30,26 @@ devtools::install_github("jaroslav-kuchar/fpmoutliers")
 ```
 
 ## Usage
+
+### Basic example
+
+```R
+library(fpmoutliers)
+library(XML)
+dataFrame <- read.csv(system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- FPI(dataFrame, minSupport = 0.001)
+saveXML(generatePMML(model, dataFrame), "example_out.xml")
+```
+
+### Experimental automatic build
+```R
+library("fpmoutliers")
+data("iris")
+model <- fpmoutliers::build(iris)
+```
+
+### Save the model to an experimental PMML format
+
 ```R
 library(fpmoutliers)
 library(XML)

@@ -4,10 +4,10 @@
 \alias{WCFPOF}
 \title{WCFPOF}
 \usage{
-WCFPOF(dataFrame, minSupport = 0.3, mlen = 0)
+WCFPOF(data, minSupport = 0.3, mlen = 0)
 }
 \arguments{
-\item{dataFrame}{data.frame with input data}
+\item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
 
 \item{minSupport}{minimum support for FPM}
 

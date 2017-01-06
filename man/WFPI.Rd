@@ -4,11 +4,11 @@
 \alias{WFPI}
 \title{Weighted Frequent Pattern Isolation}
 \usage{
-WFPI(dataFrame, minSupport = 0.3, mlen = 0, preferredColumn = "",
+WFPI(data, minSupport = 0.3, mlen = 0, preferredColumn = "",
   preference = 1)
 }
 \arguments{
-\item{dataFrame}{data.frame with input data}
+\item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
 
 \item{minSupport}{minimum support for FPM}
 

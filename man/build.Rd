@@ -2,19 +2,19 @@
 % Please edit documentation in R/build.R
 \name{build}
 \alias{build}
-\title{Automatic build of anomaly detection model}
+\title{Automatic build}
 \usage{
 build(data, func = FPI, initial_support = 0.5, top_outlier_threshold = 3,
   iteration_timeout = 10)
 }
 \arguments{
-\item{data}{data.frame with input data}
+\item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
 
-\item{func}{function name of method}
+\item{func}{function name of the method that will be use during the automatic build}
 
-\item{initial_support}{maximum length of frequent itemsets}
+\item{initial_support}{initial maximum support}
 
-\item{top_outlier_threshold}{number of top unique outliers}
+\item{top_outlier_threshold}{number of top unique outliers as a stopping condition}
 
 \item{iteration_timeout}{timeout of one iteration}
 }
@@ -22,7 +22,7 @@ build(data, func = FPI, initial_support = 0.5, top_outlier_threshold = 3,
 model of outlier detection
 }
 \description{
-Automatic build of anomaly detection model
+An experimental implementataion that automatically builds an anomaly detection model
 }
 \examples{
 library("fpmoutliers")
