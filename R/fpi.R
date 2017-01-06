@@ -76,3 +76,8 @@ FPI <- function(data, minSupport=0.3, mlen=0){
   # scores
   output
 }
+
+
+
+
+

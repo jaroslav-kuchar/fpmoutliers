@@ -35,10 +35,11 @@ devtools::install_github("jaroslav-kuchar/fpmoutliers")
 
 ```R
 library(fpmoutliers)
-library(XML)
 dataFrame <- read.csv(system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
 model <- FPI(dataFrame, minSupport = 0.001)
-saveXML(generatePMML(model, dataFrame), "example_out.xml")
+dataFrame <- dataFrame[order(model$scores, decreasing = TRUE),]
+print(dataFrame[1,]) # instance with the highest anomaly score
+print(dataFrame[nrow(dataFrame),]) # instance with the lowest anomaly score
 ```
 
 ### Experimental automatic build
