@@ -20,7 +20,8 @@ WFPI <- function(data, minSupport=0.3, mlen=0, preferredColumn="", preference=1.
     txns <- data
   }
   if(mlen<=0){
-    mlen <- length(unique(txns@itemInfo$variables))
+    variables <- unname(sapply(txns@itemInfo$labels,function(x) strsplit(x,"=")[[1]][1]))
+    mlen <- length(unique(variables))
   }
   fitemsets <- apriori(txns, parameter = list(support=minSupport, maxlen=mlen, target="frequent itemsets"))
 
