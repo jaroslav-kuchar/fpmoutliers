@@ -57,7 +57,7 @@ visualizeInstance <- function(data, instanceIndex, bars=10) {
 #' @param data data.frame with data describing all instances
 #' @param model outlier detection model
 #' @param instanceIndex index of the instance to visualize
-#' @param topN limit for a print of top matching patterns
+#' @param topN limit for a print of top matching frequent itemsets
 #' @export
 #' @examples
 #' library("fpmoutliers")
@@ -71,19 +71,49 @@ visualizeInstance <- function(data, instanceIndex, bars=10) {
 #' # instance with the lowest anomaly score
 #' describeInstance(dataFrame, model, nrow(dataFrame))
 describeInstance <-function(data, model, instanceIndex, topN = 10){
+  output <- list()
   rowIndex <- as.numeric(rownames(data)[instanceIndex])
   cat(paste("Details for the instance:",rowIndex, "\n"))
+  output$score <- model$scores[rowIndex]
   cat(paste("* Outlier score:",round(model$scores[rowIndex], 2), "\n"))
   if("partials" %in% names(model)){
     df <- data.frame(
-      pattern=names(which(model$partials$coverage[rowIndex,]==1)),
+      itemset=names(which(model$partials$coverage[rowIndex,]==1)),
       support=model$model@quality[which(model$partials$coverage[rowIndex,]==1),]
     )
     df <- df[order(df$support, decreasing = T), ]
     coverage <- ncol(data)-model$partials$penalization[rowIndex]
+    output$coverage <- (coverage/(ncol(data)))
     cat(paste("* Coverage of the instance:", coverage, " of ", ncol(data), "attributes",  "(", (coverage/(ncol(data)))*100, "%)", "\n"))
-    cat(paste("* Number of matching patterns:", nrow(df), "\n"))
-    cat(paste("* Patterns (top-",topN,"):\n",sep=""))
+    cat(paste("* Number of matching frequent itemsets:", nrow(df), "\n"))
+    cat(paste("* Frequent itemsets (top-",topN,"):\n",sep=""))
+    output$itemsets <- df
     print(head(df, topN))
+
+    # add score for each attribute
+    if(is(data,"data.frame")){
+      dd <- sapply(data,as.factor)
+      dd <- data.frame(dd, check.names=F)
+      txns <- as(dd, "transactions")
+    } else {
+      txns <- data
+    }
+    # sum od scores of itemsets for each attribute that is member of
+    numerator <- model$model@items@data %*% unname(model$partials$scores[rowIndex,])
+    # number of itemsets the specific attribute is member of
+    denominator <- model$model@items@data %*% model$partials$coverage[rowIndex,]
+    # replace zeros to properly comute the fraction/division operation
+    denominator[denominator == 0] <- 1
+    scores <- t(numerator/denominator)
+    # add column names
+    colnames(scores) <- model$model@items@itemInfo$labels
+    # for penalized attributes - add penalization score
+    scores[scores == 0] <- ncol(txns@data)
+    # filter by attributes apeared in the data
+    scores <- scores[,t(txns@data)[instanceIndex,]]
+    cat(paste("* Participations of attributes:\n",sep=""))
+    output$scores <- scores
+    print(scores)
   }
+  output
 }

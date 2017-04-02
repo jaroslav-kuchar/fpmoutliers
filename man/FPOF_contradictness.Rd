@@ -24,4 +24,3 @@ vector with outlier scores
 \description{
 Frequent Pattern Outlier Factor
 }
-

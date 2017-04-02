@@ -30,4 +30,3 @@ data("iris")
 model <- fpmoutliers::build(iris)
 
 }
-

@@ -19,4 +19,3 @@ vector with outlier scores
 \description{
 Frequent Pattern Isolation
 }
-

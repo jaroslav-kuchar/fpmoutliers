@@ -24,4 +24,3 @@ vector with outlier scores
 \description{
 Weighted Frequent Pattern Isolation
 }
-

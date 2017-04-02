@@ -26,4 +26,3 @@ dataFrame <- read.csv(
 model <- FPI(dataFrame, minSupport = 0.001)
 #generatePMML(model, dataFrame)
 }
-

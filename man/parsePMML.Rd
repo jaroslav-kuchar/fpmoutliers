@@ -15,4 +15,3 @@ list model
 \description{
 PMML parser
 }
-

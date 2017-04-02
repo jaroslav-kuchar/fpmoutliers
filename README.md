@@ -42,14 +42,47 @@ print(dataFrame[1,]) # instance with the highest anomaly score
 print(dataFrame[nrow(dataFrame),]) # instance with the lowest anomaly score
 ```
 
-### Experimental automatic build
+### Experimental explanations
+
+#### Graphical explanation using bar plots 
+
+Currently not suitable for large datasets - the plot is limited by the number of rows and columns of the input data.
+
+```R
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- FPI(dataFrame, minSupport = 0.001)
+# sort data by the anomaly score
+dataFrame <- dataFrame[order(model$scores, decreasing = TRUE),]
+visualizeInstance(dataFrame, 1) # instance with the highest anomaly score
+visualizeInstance(dataFrame, nrow(dataFrame)) # instance with the lowest anomaly score
+```
+
+#### Textual explanation
+
+```R
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- FPI(dataFrame, minSupport = 0.001)
+# sort data by the anomaly score
+dataFrame <- dataFrame[order(model$scores, decreasing = TRUE),]
+# instance with the highest anomaly score
+out <- describeInstance(dataFrame, model, 1)
+# instance with the lowest anomaly score
+out <- describeInstance(dataFrame, model, nrow(dataFrame))
+```
+
+### Other available functionalities
+#### Experimental automatic build
 ```R
 library("fpmoutliers")
 data("iris")
 model <- fpmoutliers::build(iris)
 ```
 
-### Save the model to an experimental PMML format
+#### Save the model to an experimental PMML format
 
 ```R
 library(fpmoutliers)

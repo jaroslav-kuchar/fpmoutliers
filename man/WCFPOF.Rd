@@ -19,4 +19,3 @@ vector with outlier scores
 \description{
 Jiadong Ren, Qunhui Wu,  Jiadong Ren, Changzhen Hu, Kunsheng Wang - An Approach for Analyzing Infrequent Software Faults Based on Outlier Detection
 }
-

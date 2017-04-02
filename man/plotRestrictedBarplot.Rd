@@ -25,4 +25,3 @@ selectedValue <- data[length(data)/2]
 plotRestrictedBarplot(data, selectedValue, bars = 15,
      title=paste("Experimental=",selectedValue,sep=""))
 }
-

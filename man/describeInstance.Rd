@@ -13,7 +13,7 @@ describeInstance(data, model, instanceIndex, topN = 10)
 
 \item{instanceIndex}{index of the instance to visualize}
 
-\item{topN}{limit for a print of top matching patterns}
+\item{topN}{limit for a print of top matching frequent itemsets}
 }
 \description{
 Explain the instance/outlier by a brief textual summary
@@ -30,4 +30,3 @@ describeInstance(dataFrame, model, 1)
 # instance with the lowest anomaly score
 describeInstance(dataFrame, model, nrow(dataFrame))
 }
-

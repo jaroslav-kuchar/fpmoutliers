@@ -19,4 +19,3 @@ vector with outlier scores
 \description{
 He, Z., Xu, X., Huang, J. Z., Deng, S.: FP-Outlier: Frequent Pattern Based Outlier Detection. Computer Science and Information Systems, Vol. 2, No. 1, 103-118. (2005)
 }
-

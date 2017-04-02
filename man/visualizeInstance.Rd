@@ -26,4 +26,3 @@ dataFrame <- dataFrame[order(model$scores, decreasing = TRUE),]
 visualizeInstance(dataFrame, 1) # instance with the highest anomaly score
 visualizeInstance(dataFrame, nrow(dataFrame)) # instance with the lowest anomaly score
 }
-

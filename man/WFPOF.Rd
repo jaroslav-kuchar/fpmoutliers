@@ -19,4 +19,3 @@ vector with outlier scores
 \description{
 ZHOU Xiao-Yun+, SUN Zhi-Hui, ZHANG Bai-Li, YANG Yi-Dong - A Fast Outlier Detection Algorithm for High Dimensional Categorical Data Streams. Journal of Software 18(4). April 2007.
 }
-

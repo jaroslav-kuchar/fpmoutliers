@@ -19,4 +19,3 @@ vector with outlier scores
 \description{
 X. Tang, G. Li and G. Chen, "Fast Detecting Outliers over Online Data Streams," 2009 International Conference on Information Engineering and Computer Science, Wuhan, 2009, pp. 1-4.
 }
-
