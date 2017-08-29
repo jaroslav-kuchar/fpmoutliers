@@ -4,8 +4,28 @@
 
 R implementation of algorithms for detection of outliers based on frequent pattern mining.
 
+If you would like to cite our work, please use:
+
+```bib
+@InProceedings{kuchar:2017:FPI,
+  title =    {Spotlighting Anomalies using Frequent Patterns},
+  author =   {Jaroslav Kuchař and Vojtěch Svátek},
+  booktitle =    {Proceedings of the KDD 2017 Workshop on Anomaly Detection in Finance},
+  year =   {2017},
+  volume =   {71},
+  series =   {Proceedings of Machine Learning Research},
+  address =    {Halifax, Nova Scotia, Canada},
+  month =    {14 Aug},
+  publisher =    {PMLR},
+  issn = {1938-7228}
+}
+```
+
 Available implementations:
 
+- FPI, WFPI - Frequent Pattern Isolation, Weighted Frequent Pattern Isolation
+  * J. Kuchar, V. Svatek: Spotlighting Anomalies using Frequent Patterns, Proceedings of the KDD 2017 Workshop on Anomaly
+Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.  [link](http://proceedings.mlr.press/v71/)
 - FPCOF - Frequent Pattern Contradiction Outlier Factor
   * X. Tang, G. Li and G. Chen, "Fast Detecting Outliers over Online Data Streams," 2009 International Conference on Information Engineering and Computer Science, Wuhan, 2009, pp. 1-4. [link](http://ieeexplore.ieee.org/abstract/document/5363123/)
 - FPOF - Frequent Pattern Outlier Factor
@@ -18,8 +38,6 @@ Available implementations:
   * Jiadong Ren, Qunhui Wu, Changzhen Hu, and Kunsheng Wang. 2009. An Approach for Analyzing Infrequent Software Faults Based on Outlier Detection. In Proceedings of the 2009 International Conference on Artificial Intelligence and Computational Intelligence - Volume 04 (AICI '09), Vol. 4. IEEE Computer Society, Washington, DC, USA, 302-306. [link](http://dl.acm.org/citation.cfm?id=1723929)
 - WFPOF - Weighted Frequent Pattern Outlier Factor
   * ZHOU Xiao-Yun+, SUN Zhi-Hui, ZHANG Bai-Li, YANG Yi-Dong - A Fast Outlier Detection Algorithm for High Dimensional Categorical Data Streams. Journal of Software 18(4) · April 2007. [link](http://en.cnki.com.cn/Article_en/CJFDTOTAL-RJXB200704015.htm)
-- FPI, WFPI - Frequent Pattern Isolation, Weighted Frequent Pattern Isolation
-  * TBD
 
 ## Development Version Installation
 
