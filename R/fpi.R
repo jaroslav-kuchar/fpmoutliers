@@ -39,7 +39,7 @@ FPI <- function(data, minSupport=0.3, mlen=0){
 
   # extract support of individual frequent itemsets
   start.time <- Sys.time()
-  fiQualities <- c(t(fitemsets@quality))
+  fiQualities <- c(t(fitemsets@quality$support))
   end.time <- Sys.time()
   message(paste("FI qualities:", time.taken <- end.time - start.time, "(", pryr::mem_used(), ")"))
 

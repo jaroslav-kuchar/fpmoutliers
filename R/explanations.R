@@ -79,7 +79,7 @@ describeInstance <-function(data, model, instanceIndex, topN = 10){
   if("partials" %in% names(model)){
     df <- data.frame(
       itemset=names(which(model$partials$coverage[rowIndex,]==1)),
-      support=model$model@quality[which(model$partials$coverage[rowIndex,]==1),]
+      support=model$model@quality[which(model$partials$coverage[rowIndex,]==1),]$support
     )
     df <- df[order(df$support, decreasing = T), ]
     coverage <- ncol(data)-model$partials$penalization[rowIndex]

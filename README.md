@@ -118,7 +118,7 @@ saveXML(generatePMML(model, dataFrame), "example_out.xml")
 All implemented methods return a list with following parameters:
 - `minSupport` - minimum support setting for frequent itemsets mining
 - `maxlen` - maximum length of frequent itemsets
-- `model` - frequent itemset model represented as [itemsets-class](https://cran.r-project.org/web/packages/arules/arules.pdf)
+- `model` - frequent itemset model represented as [itemsets-class](https://cran.r-project.org/package=arules)
 - `scores` - outlier/anomaly scores for each observation/row of the input dataframe
 
 ## Contributors

@@ -17,7 +17,7 @@ Encoding: UTF-8
 Depends:
     R (>= 3.4.0)
 Imports: pmml, XML, Matrix, R.utils,
-        arules,
+        arules (>= 1.5-4),
         foreach,
         doParallel,
         parallel,
