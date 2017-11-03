@@ -1,16 +1,17 @@
-#' WFPOF
+#' WFPOF algorithm
 #'
+#' Algorithm proposed by:
 #' ZHOU Xiao-Yun+, SUN Zhi-Hui, ZHANG Bai-Li, YANG Yi-Dong - A Fast Outlier Detection Algorithm for High Dimensional Categorical Data Streams. Journal of Software 18(4). April 2007.
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-WFPOF <- function(data, minSupport=0.3, mlen=0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+WFPOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)

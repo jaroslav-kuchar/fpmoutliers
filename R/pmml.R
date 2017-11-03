@@ -1,10 +1,12 @@
-#' PMML conversion
+#' PMML conversion - PMML representation of outliers
+#'
+#' Kuchar, Jaroslav et al. “Outlier (Anomaly) Detection Modelling in PMML.” RuleML+RR (2017).(http://ceur-ws.org/Vol-1875/paper9.pdf)
 #'
 #' @param model outlier model
 #' @param dataFrame frame for labeling
 #' @param topN limit number of outliers in the output
 #' @return pmml model
-#' @import pmml XML
+#' @import pmml XML arules
 #' @export
 #' @examples
 #' library("fpmoutliers")

@@ -1,16 +1,22 @@
-#' Frequent Pattern Outlier Factor
+#' FPOF - Frequent Pattern Outlier Factor algorithm
 #'
+#' Algorithm proposed by:
 #' He, Z., Xu, X., Huang, J. Z., Deng, S.: FP-Outlier: Frequent Pattern Based Outlier Detection. Computer Science and Information Systems, Vol. 2, No. 1, 103-118. (2005)
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-FPOF <- function(data, minSupport=0.3, mlen=0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+#' @examples
+#' library("fpmoutliers")
+#' dataFrame <- read.csv(
+#'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+#' model <- FPOF(dataFrame, minSupport = 0.001)
+FPOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)
@@ -62,7 +68,7 @@ FPOF <- function(data, minSupport=0.3, mlen=0){
 #' @return vector with outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-FPOF_contradictness <- function(dataFrame, anIndex, minSupport=0.3, mlen=0, k = 10){
+FPOFcontradictness <- function(dataFrame, anIndex, minSupport=0.3, mlen=0, k = 10){
   no_cores <- detectCores() - 1
   registerDoParallel(no_cores)
 

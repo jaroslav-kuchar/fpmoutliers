@@ -2,9 +2,9 @@
 % Please edit documentation in R/mfpof.R
 \name{MFPOF}
 \alias{MFPOF}
-\title{MFPOF}
+\title{MFPOF algorithm}
 \usage{
-MFPOF(data, minSupport = 0.3, mlen = 0)
+MFPOF(data, minSupport = 0.3, mlen = 0, noCores = 1)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
@@ -12,10 +12,13 @@ MFPOF(data, minSupport = 0.3, mlen = 0)
 \item{minSupport}{minimum support for FPM}
 
 \item{mlen}{maximum length of frequent itemsets}
+
+\item{noCores}{number of cores for parallel computation}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
+Algorithm proposed by:
 Feng Lin, Wang Le, Jin Bo - Research on Maximal Frequent Pattern Outlier Factor for Online HighDimensional Time-Series Outlier Detection. Journal of Convergence Information Technology 5(10):66-71. December 2010.
 }

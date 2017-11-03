@@ -2,10 +2,10 @@
 % Please edit documentation in R/wfpi.R
 \name{WFPI}
 \alias{WFPI}
-\title{Weighted Frequent Pattern Isolation}
+\title{WFPI - Weighted Frequent Pattern Isolation algorithm}
 \usage{
 WFPI(data, minSupport = 0.3, mlen = 0, preferredColumn = "",
-  preference = 1)
+  preference = 1, noCores = 1)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
@@ -17,10 +17,13 @@ WFPI(data, minSupport = 0.3, mlen = 0, preferredColumn = "",
 \item{preferredColumn}{column name that is preferred}
 
 \item{preference}{numeric value that multiplies the score}
+
+\item{noCores}{number of cores for parallel computation}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
-Weighted Frequent Pattern Isolation
+Algorithm proposed by:
+J. Kuchar, V. Svatek: Spotlighting Anomalies using Frequent Patterns, Proceedings of the KDD 2017 Workshop on Anomaly Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.
 }

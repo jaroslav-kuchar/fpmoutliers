@@ -2,9 +2,9 @@
 % Please edit documentation in R/lfpof.R
 \name{LFPOF}
 \alias{LFPOF}
-\title{LFPOF}
+\title{LFPOF algorithm}
 \usage{
-LFPOF(data, minSupport = 0.3, mlen = 0)
+LFPOF(data, minSupport = 0.3, mlen = 0, noCores = 1)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
@@ -12,10 +12,19 @@ LFPOF(data, minSupport = 0.3, mlen = 0)
 \item{minSupport}{minimum support for FPM}
 
 \item{mlen}{maximum length of frequent itemsets}
+
+\item{noCores}{number of cores for parallel computation}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
+Algorithm proposed by:
 W. Zhang, J. Wu and J. Yu, "An Improved Method of Outlier Detection Based on Frequent Pattern," Information Engineering (ICIE), 2010 WASE International Conference on, Beidaihe, Hebei, 2010, pp. 3-6.
+}
+\examples{
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- LFPOF(dataFrame, minSupport = 0.001)
 }

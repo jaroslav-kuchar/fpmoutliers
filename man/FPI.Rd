@@ -2,7 +2,7 @@
 % Please edit documentation in R/fpi.R
 \name{FPI}
 \alias{FPI}
-\title{Frequent Pattern Isolation}
+\title{FPI - Frequent Pattern Isolation algorithm}
 \usage{
 FPI(data, minSupport = 0.3, mlen = 0)
 }
@@ -14,10 +14,11 @@ FPI(data, minSupport = 0.3, mlen = 0)
 \item{mlen}{maximum length of frequent itemsets}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
-Frequent Pattern Isolation
+Algorithm proposed by:
+J. Kuchar, V. Svatek: Spotlighting Anomalies using Frequent Patterns, Proceedings of the KDD 2017 Workshop on Anomaly Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.
 }
 \examples{
 library("fpmoutliers")

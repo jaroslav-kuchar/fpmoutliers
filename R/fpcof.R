@@ -1,16 +1,22 @@
-#' FPCOF
+#' FPCOF algorithm
 #'
+#' Algorithm proposed by:
 #' X. Tang, G. Li and G. Chen, "Fast Detecting Outliers over Online Data Streams," 2009 International Conference on Information Engineering and Computer Science, Wuhan, 2009, pp. 1-4.
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel methods
 #' @export
-FPCOF <- function(data, minSupport=0.3, mlen=0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+#' @examples
+#' library("fpmoutliers")
+#' dataFrame <- read.csv(
+#'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+#' model <- FPCOF(dataFrame, minSupport = 0.001)
+FPCOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)

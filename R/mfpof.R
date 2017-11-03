@@ -1,16 +1,17 @@
-#' MFPOF
+#' MFPOF algorithm
 #'
+#' Algorithm proposed by:
 #' Feng Lin, Wang Le, Jin Bo - Research on Maximal Frequent Pattern Outlier Factor for Online HighDimensional Time-Series Outlier Detection. Journal of Convergence Information Technology 5(10):66-71. December 2010.
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-MFPOF <- function(data, minSupport=0.3, mlen=0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+MFPOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)

@@ -2,9 +2,9 @@
 % Please edit documentation in R/wcfpof.R
 \name{WCFPOF}
 \alias{WCFPOF}
-\title{WCFPOF}
+\title{WCFPOF algorithm}
 \usage{
-WCFPOF(data, minSupport = 0.3, mlen = 0)
+WCFPOF(data, minSupport = 0.3, mlen = 0, noCores = 1)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
@@ -12,10 +12,13 @@ WCFPOF(data, minSupport = 0.3, mlen = 0)
 \item{minSupport}{minimum support for FPM}
 
 \item{mlen}{maximum length of frequent itemsets}
+
+\item{noCores}{number of cores for parallel computation}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
+Algorithm proposed by:
 Jiadong Ren, Qunhui Wu,  Jiadong Ren, Changzhen Hu, Kunsheng Wang - An Approach for Analyzing Infrequent Software Faults Based on Outlier Detection
 }

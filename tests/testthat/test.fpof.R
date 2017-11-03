@@ -1,8 +1,13 @@
-# http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/
-# https://cran.r-project.org/web/packages/RUnit/vignettes/RUnit.pdf
-# http://www.is.uni-freiburg.de/ressourcen/algorithm-design-and-software-engineering-oeffentlicher-zugriff/11_softwaretesting.pdf
+test_that("FPOF", {
+  dataFrame <- read.csv(system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+  model <- FPOF(dataFrame, minSupport = 0.001)
+  expect_equal(length(model$model),22)
+  expect_equal(model$scores[1],0.1227, tolerance=1e-3)
+})
 
-
-test_that("Example", {
-  expect_true(TRUE)
+test_that("FPOF 2", {
+  dataFrame <- read.csv(system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+  model <- FPOF(dataFrame, minSupport = 0.001, mlen=1)
+  expect_equal(length(model$model),6)
+  expect_equal(model$scores[1],0.2667, tolerance=1e-3)
 })

@@ -25,7 +25,7 @@ Available implementations:
 
 - FPI, WFPI - Frequent Pattern Isolation, Weighted Frequent Pattern Isolation
   * J. Kuchar, V. Svatek: Spotlighting Anomalies using Frequent Patterns, Proceedings of the KDD 2017 Workshop on Anomaly
-Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.  [link](http://proceedings.mlr.press/v71/)
+Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.  [link](https://sites.google.com/view/kdd-adf-2017/accepted-papers), [link2](http://proceedings.mlr.press/v71/)
 - FPCOF - Frequent Pattern Contradiction Outlier Factor
   * X. Tang, G. Li and G. Chen, "Fast Detecting Outliers over Online Data Streams," 2009 International Conference on Information Engineering and Computer Science, Wuhan, 2009, pp. 1-4. [link](http://ieeexplore.ieee.org/abstract/document/5363123/)
 - FPOF - Frequent Pattern Outlier Factor
@@ -101,6 +101,9 @@ model <- fpmoutliers::build(iris)
 ```
 
 #### Save the model to an experimental PMML format
+
+- Kuchar, Jaroslav et al. “Outlier (Anomaly) Detection Modelling in PMML.” RuleML+RR (2017).
+  * [link](http://ceur-ws.org/Vol-1875/paper9.pdf)
 
 ```R
 library(fpmoutliers)

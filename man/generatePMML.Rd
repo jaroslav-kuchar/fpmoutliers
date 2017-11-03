@@ -2,7 +2,7 @@
 % Please edit documentation in R/pmml.R
 \name{generatePMML}
 \alias{generatePMML}
-\title{PMML conversion}
+\title{PMML conversion - PMML representation of outliers}
 \usage{
 generatePMML(model, dataFrame = NULL, topN = NULL)
 }
@@ -17,7 +17,7 @@ generatePMML(model, dataFrame = NULL, topN = NULL)
 pmml model
 }
 \description{
-PMML conversion
+Kuchar, Jaroslav et al. “Outlier (Anomaly) Detection Modelling in PMML.” RuleML+RR (2017).(http://ceur-ws.org/Vol-1875/paper9.pdf)
 }
 \examples{
 library("fpmoutliers")

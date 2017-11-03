@@ -2,9 +2,9 @@
 % Please edit documentation in R/wfpof.R
 \name{WFPOF}
 \alias{WFPOF}
-\title{WFPOF}
+\title{WFPOF algorithm}
 \usage{
-WFPOF(data, minSupport = 0.3, mlen = 0)
+WFPOF(data, minSupport = 0.3, mlen = 0, noCores = 1)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
@@ -12,10 +12,13 @@ WFPOF(data, minSupport = 0.3, mlen = 0)
 \item{minSupport}{minimum support for FPM}
 
 \item{mlen}{maximum length of frequent itemsets}
+
+\item{noCores}{number of cores for parallel computation}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
+Algorithm proposed by:
 ZHOU Xiao-Yun+, SUN Zhi-Hui, ZHANG Bai-Li, YANG Yi-Dong - A Fast Outlier Detection Algorithm for High Dimensional Categorical Data Streams. Journal of Software 18(4). April 2007.
 }

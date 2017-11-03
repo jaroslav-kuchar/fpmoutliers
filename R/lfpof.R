@@ -1,16 +1,22 @@
-#' LFPOF
+#' LFPOF algorithm
 #'
+#' Algorithm proposed by:
 #' W. Zhang, J. Wu and J. Yu, "An Improved Method of Outlier Detection Based on Frequent Pattern," Information Engineering (ICIE), 2010 WASE International Conference on, Beidaihe, Hebei, 2010, pp. 3-6.
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-LFPOF <- function(data, minSupport=0.3, mlen=0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+#' @examples
+#' library("fpmoutliers")
+#' dataFrame <- read.csv(
+#'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+#' model <- LFPOF(dataFrame, minSupport = 0.001)
+LFPOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)

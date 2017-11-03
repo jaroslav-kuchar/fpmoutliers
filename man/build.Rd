@@ -2,7 +2,7 @@
 % Please edit documentation in R/build.R
 \name{build}
 \alias{build}
-\title{Automatic build}
+\title{Automatic build of the anomaly detection model}
 \usage{
 build(data, func = FPI, initial_support = 0.5, top_outlier_threshold = 3,
   iteration_timeout = 10)
@@ -27,6 +27,6 @@ An experimental implementataion that automatically builds an anomaly detection m
 \examples{
 library("fpmoutliers")
 data("iris")
-model <- fpmoutliers::build(iris)
+model <- fpmoutliers::build(iris[sample(nrow(iris), 5),])
 
 }

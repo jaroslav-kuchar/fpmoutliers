@@ -1,16 +1,17 @@
-#' WCFPOF
+#' WCFPOF algorithm
 #'
+#' Algorithm proposed by:
 #' Jiadong Ren, Qunhui Wu,  Jiadong Ren, Changzhen Hu, Kunsheng Wang - An Approach for Analyzing Infrequent Software Faults Based on Outlier Detection
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-WCFPOF <- function(data, minSupport=0.3, mlen=0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+WCFPOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)

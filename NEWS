@@ -1,3 +1,12 @@
+fpmoutliers 0.1.0 (Release date: 2017-11-03)
+==============
+
+Changes:
+
+* Peformance modification of anomaly scores computations
+* Updates of the documentation
+
+
 fpmoutliers 0.0.1 (Release date: 2016-10-05)
 ==============
 

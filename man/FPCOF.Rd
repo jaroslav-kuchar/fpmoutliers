@@ -2,9 +2,9 @@
 % Please edit documentation in R/fpcof.R
 \name{FPCOF}
 \alias{FPCOF}
-\title{FPCOF}
+\title{FPCOF algorithm}
 \usage{
-FPCOF(data, minSupport = 0.3, mlen = 0)
+FPCOF(data, minSupport = 0.3, mlen = 0, noCores = 1)
 }
 \arguments{
 \item{data}{\code{data.frame} or \code{transactions} from \code{arules} with input data}
@@ -12,10 +12,19 @@ FPCOF(data, minSupport = 0.3, mlen = 0)
 \item{minSupport}{minimum support for FPM}
 
 \item{mlen}{maximum length of frequent itemsets}
+
+\item{noCores}{number of cores for parallel computation}
 }
 \value{
-vector with outlier scores
+model output (list) with all results including outlier scores
 }
 \description{
+Algorithm proposed by:
 X. Tang, G. Li and G. Chen, "Fast Detecting Outliers over Online Data Streams," 2009 International Conference on Information Engineering and Computer Science, Wuhan, 2009, pp. 1-4.
+}
+\examples{
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- FPCOF(dataFrame, minSupport = 0.001)
 }

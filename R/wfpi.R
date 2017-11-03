@@ -1,16 +1,19 @@
-#' Weighted Frequent Pattern Isolation
+#' WFPI - Weighted Frequent Pattern Isolation algorithm
+#'
+#' Algorithm proposed by:
+#' J. Kuchar, V. Svatek: Spotlighting Anomalies using Frequent Patterns, Proceedings of the KDD 2017 Workshop on Anomaly Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.
 #'
 #' @param data \code{data.frame} or \code{transactions} from \code{arules} with input data
 #' @param minSupport minimum support for FPM
 #' @param mlen maximum length of frequent itemsets
 #' @param preferredColumn column name that is preferred
 #' @param preference numeric value that multiplies the score
-#' @return vector with outlier scores
+#' @param noCores number of cores for parallel computation
+#' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
-WFPI <- function(data, minSupport=0.3, mlen=0, preferredColumn="", preference=1.0){
-  no_cores <- detectCores() - 1
-  registerDoParallel(no_cores)
+WFPI <- function(data, minSupport=0.3, mlen=0, preferredColumn="", preference=1.0, noCores=1){
+  registerDoParallel(noCores)
 
   if(is(data,"data.frame")){
     data <- sapply(data,as.factor)
