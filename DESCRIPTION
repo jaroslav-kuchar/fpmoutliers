@@ -8,9 +8,10 @@ Maintainer: Jaroslav Kuchar <jaroslav.kuchar@gmail.com>
 URL: https://github.com/jaroslav-kuchar/fpmoutliers
 BugReports: https://github.com/jaroslav-kuchar/fpmoutliers/issues
 Description: Algorithms for detection of outliers based on frequent pattern
-    mining. Such alforithms follow the paradigm: if an instance contains more frequent patterns, 
+    mining. Such algorithms follow the paradigm: if an instance contains more frequent patterns, 
     it means that this data instance is unlikely to be an anomaly. 
-    The package implements a list of existing state of the art algorithms as well as other published approaches.
+    The package implements a list of existing state of the art algorithms as well as other published 
+    approaches: FPI, WFPI, FPOF, FPCOF, LFPOF, MFPOF, WCFPOF and WFPOF.
 License: Apache License (== 2.0) | file LICENSE
 LazyData: TRUE
 Encoding: UTF-8
