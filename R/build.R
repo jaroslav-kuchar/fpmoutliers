@@ -8,7 +8,7 @@
 #' @param top_outlier_threshold number of top unique outliers as a stopping condition
 #' @param iteration_timeout timeout of one iteration
 #' @return model of outlier detection
-#' @importFrom R.utils evalWithTimeout
+#' @importFrom R.utils withTimeout
 #' @export
 #' @examples
 #' library("fpmoutliers")
@@ -23,7 +23,7 @@ build <- function(data, func=FPI, initial_support=0.5, top_outlier_threshold=3, 
 
   while(running){
     tryCatch({
-      model <- evalWithTimeout({
+      model <- withTimeout({
         do.call(func,list(data=data, minSupport = ms, mlen = 0))
       }, timeout = iteration_timeout, onTimeout="error");
       if(length(which(model$scores == max(model$scores)))>top_outlier_threshold){
