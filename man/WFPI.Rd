@@ -27,3 +27,9 @@ model output (list) with all results including outlier scores
 Algorithm proposed by:
 J. Kuchar, V. Svatek: Spotlighting Anomalies using Frequent Patterns, Proceedings of the KDD 2017 Workshop on Anomaly Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.
 }
+\examples{
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- WFPI(dataFrame, minSupport = 0.001, preferredColumn="Car", preference=10)
+}

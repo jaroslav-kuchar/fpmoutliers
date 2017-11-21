@@ -12,6 +12,11 @@
 #' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
+#' @examples
+#' library("fpmoutliers")
+#' dataFrame <- read.csv(
+#'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+#' model <- WFPI(dataFrame, minSupport = 0.001, preferredColumn="Car", preference=10)
 WFPI <- function(data, minSupport=0.3, mlen=0, preferredColumn="", preference=1.0, noCores=1){
   registerDoParallel(noCores)
 

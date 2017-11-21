@@ -11,10 +11,17 @@
 #' @importFrom R.utils withTimeout
 #' @export
 #' @examples
+#' # simple build with default parameters (FPI method)
 #' library("fpmoutliers")
 #' data("iris")
 #' model <- fpmoutliers::build(iris[sample(nrow(iris), 5),])
 #'
+#' \donttest{
+#' # using other anomaly detection methods for the automatic build (e.g. LFPOF)
+#' library("fpmoutliers")
+#' data("iris")
+#' model <- fpmoutliers::build(iris[sample(nrow(iris), 5),], func=LFPOF)
+#' }
 build <- function(data, func=FPI, initial_support=0.5, top_outlier_threshold=3, iteration_timeout=10){
   model <- list()
   running <- TRUE

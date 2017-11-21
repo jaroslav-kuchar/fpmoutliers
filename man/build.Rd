@@ -25,8 +25,15 @@ model of outlier detection
 An experimental implementataion that automatically builds an anomaly detection model
 }
 \examples{
+# simple build with default parameters (FPI method)
 library("fpmoutliers")
 data("iris")
 model <- fpmoutliers::build(iris[sample(nrow(iris), 5),])
 
+\donttest{
+# using other anomaly detection methods for the automatic build (e.g. LFPOF)
+library("fpmoutliers")
+data("iris")
+model <- fpmoutliers::build(iris[sample(nrow(iris), 5),], func=LFPOF)
+}
 }

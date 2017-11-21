@@ -9,11 +9,13 @@
 #' @import pmml XML arules
 #' @export
 #' @examples
+#' \dontrun{
 #' library("fpmoutliers")
 #' dataFrame <- read.csv(
 #'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
 #' model <- FPI(dataFrame, minSupport = 0.001)
-#' #generatePMML(model, dataFrame)
+#' generatePMML(model, dataFrame)
+#' }
 generatePMML <- function(model, dataFrame=NULL, topN=NULL){
 
   odNS <- "http://www.example.com/od"
@@ -83,10 +85,17 @@ generatePMML <- function(model, dataFrame=NULL, topN=NULL){
 
 #' PMML parser
 #'
+#' The parser parses the proposed PMML for the outlier detection model and build its object representation.
+#'
 #' @param fileName xml file name
 #' @return list model
 #' @import pmml XML
 #' @export
+#' @examples
+#' \dontrun{
+#' library("fpmoutliers")
+#' model <- parsePMML("od-pmml.xml")
+#' }
 parsePMML <- function(fileName) {
   doc <- xmlTreeParse(fileName, useInternalNodes = TRUE)
   top <- xmlRoot(doc)

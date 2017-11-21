@@ -22,3 +22,9 @@ model output (list) with all results including outlier scores
 Algorithm proposed by:
 Jiadong Ren, Qunhui Wu,  Jiadong Ren, Changzhen Hu, Kunsheng Wang - An Approach for Analyzing Infrequent Software Faults Based on Outlier Detection
 }
+\examples{
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- WCFPOF(dataFrame, minSupport = 0.001)
+}

@@ -10,6 +10,11 @@
 #' @return model output (list) with all results including outlier scores
 #' @import arules foreach doParallel parallel
 #' @export
+#' @examples
+#' library("fpmoutliers")
+#' dataFrame <- read.csv(
+#'      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+#' model <- WFPOF(dataFrame, minSupport = 0.001)
 WFPOF <- function(data, minSupport=0.3, mlen=0, noCores=1){
   registerDoParallel(noCores)
 

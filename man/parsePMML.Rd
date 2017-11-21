@@ -13,5 +13,11 @@ parsePMML(fileName)
 list model
 }
 \description{
-PMML parser
+The parser parses the proposed PMML for the outlier detection model and build its object representation.
+}
+\examples{
+\dontrun{
+library("fpmoutliers")
+model <- parsePMML("od-pmml.xml")
+}
 }

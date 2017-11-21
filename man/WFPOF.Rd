@@ -22,3 +22,9 @@ model output (list) with all results including outlier scores
 Algorithm proposed by:
 ZHOU Xiao-Yun+, SUN Zhi-Hui, ZHANG Bai-Li, YANG Yi-Dong - A Fast Outlier Detection Algorithm for High Dimensional Categorical Data Streams. Journal of Software 18(4). April 2007.
 }
+\examples{
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- WFPOF(dataFrame, minSupport = 0.001)
+}

@@ -22,3 +22,9 @@ model output (list) with all results including outlier scores
 Algorithm proposed by:
 Feng Lin, Wang Le, Jin Bo - Research on Maximal Frequent Pattern Outlier Factor for Online HighDimensional Time-Series Outlier Detection. Journal of Convergence Information Technology 5(10):66-71. December 2010.
 }
+\examples{
+library("fpmoutliers")
+dataFrame <- read.csv(
+     system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
+model <- MFPOF(dataFrame, minSupport = 0.001)
+}

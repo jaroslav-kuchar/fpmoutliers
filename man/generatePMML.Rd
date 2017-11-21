@@ -20,9 +20,11 @@ pmml model
 Kuchar, Jaroslav et al. “Outlier (Anomaly) Detection Modelling in PMML.” RuleML+RR (2017).(http://ceur-ws.org/Vol-1875/paper9.pdf)
 }
 \examples{
+\dontrun{
 library("fpmoutliers")
 dataFrame <- read.csv(
      system.file("extdata", "fp-outlier-customer-data.csv", package = "fpmoutliers"))
 model <- FPI(dataFrame, minSupport = 0.001)
-#generatePMML(model, dataFrame)
+generatePMML(model, dataFrame)
+}
 }
