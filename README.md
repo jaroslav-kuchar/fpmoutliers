@@ -39,6 +39,17 @@ Detection in Finance, Halifax, Nova Scotia, Canada, PMLR, 2017.  [link](https://
 - WFPOF - Weighted Frequent Pattern Outlier Factor
   * ZHOU Xiao-Yun+, SUN Zhi-Hui, ZHANG Bai-Li, YANG Yi-Dong - A Fast Outlier Detection Algorithm for High Dimensional Categorical Data Streams. Journal of Software 18(4) · April 2007. [link](http://en.cnki.com.cn/Article_en/CJFDTOTAL-RJXB200704015.htm)
 
+## Installation
+
+The package is available in CRAN repository:
+
+- https://cran.r-project.org/package=fpmoutliers
+
+```R
+install.packages('fpmoutliers',dependencies=TRUE, repos="http://cran.us.r-project.org")
+```
+
+
 ## Development Version Installation
 
 Package installation from GitHub:
